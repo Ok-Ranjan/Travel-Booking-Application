@@ -82,20 +82,24 @@ travel-booking-application/
 ```bash
 git clone https://github.com/Ok-Ranjan/Travel-Booking-Application.git
 cd travel-booking-application
+```
 
 ### 2. Create Virtual Environment
-'''bash
+```bash
 python -m venv venv
 source venv/bin/activate     # (Linux/Mac)
 venv\Scripts\activate        # (Windows)
 source venv\Scripts\activate   # (bash)
+```
 
 ### 3. Install Dependencies
-'''bash
+```bash
 pip install -r requirements.txt
+```
 
 ### 4. Configure Database (MYSQL)
 Edit travel_booking/settings.py
+```python
 DATABASES = {
   'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -106,46 +110,53 @@ DATABASES = {
         'PORT': '3306',
     }
 }
+```
 
 ### 5. Apply Migrations
-'''bash
+```bash
 python manage.py makemigrations
 python manage.py migrate
+```
 
 ### 6. Create Superuser
-'''bash
+```bash
 python manage.py createsuperuser
+```
 
 ### 7. Collect Static Files
-''bash
+```bash
 python manage.py collectstatic
+```
 
 ### 8. Run Development Server
-'''bash
+```bash
 python manage.py runserver
-
+```
 Visit -> http://127.0.0.1:8000/
 
 # ☁️ Deployment on PythonAnywhere
 ### 1. Push Code to GitHub
-'''bash
+```bash
 git init
 git add .
 git commit -m "Initial commit"
 git remote add origin https://github.com/yourusername/travel-booking-application.git
 git push -u origin master
+```
 
 ### 2. On PythonAnywhere
 -> Open a Bash console
 -> Clone repo:
-  '''bash
+  ```bash
   git clone https://github.com/yourusername/travel-booking-application.git
   cd travel-booking-application
+  ```
 
 ### 3. Virtual Environment
-'''bash
+```bash
 mkvirtualenv --python=/usr/bin/python3.10 travelenv
 pip install -r requirements.txt
+```
 
 ### 4. Create MySQL Database
 From Databases tab:
@@ -153,6 +164,7 @@ From Databases tab:
 -> Host: yourusername.mysql.pythonanywhere-services.com
 
 Update settings.py with these values:
+```python
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -163,15 +175,18 @@ DATABASES = {
         'PORT': '3306',
     }
 }
+```
 
 Run:
-'''bash
+```bash
 python manage.py migrate
 python manage.py createsuperuser
+```
 
 ### 5. Static Files
-'''bash
+```bash
 python manage.py collectstatic
+```
 
 In Web tab -> Static files:
 -> URL: /static/
@@ -183,7 +198,7 @@ In Web tab -> Static files:
 -> Edit WSGI configuration file:
 1. click on link
 2. Edit:
-'''python
+```python
 import os, sys
 path = '/home/yourusername/travel-booking'
 if path not in sys.path:
@@ -193,12 +208,10 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'travel_booking.settings'
 
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
+```
 
 -> Reload app
-
-## Your app is live at:
-https://yourusername.pythonanywhere.com
-
+[Your app is live at](https://yourusername.pythonanywhere.com):
 
 # 👨‍💻 Author
 ### Ranjan Kumar
