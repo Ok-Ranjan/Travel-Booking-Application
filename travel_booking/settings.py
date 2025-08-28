@@ -64,8 +64,12 @@ WSGI_APPLICATION = 'travel_booking.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'TripLoop$default',
+        'USER': 'TripLoop',
+        'PASSWORD': 'ranjan@1566',
+        'HOST': 'TripLoop.mysql.pythonanywhere-services.com',
+        'PORT': '3306',
     }
 }
 
