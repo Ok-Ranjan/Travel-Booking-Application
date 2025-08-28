@@ -1,0 +1,46 @@
+{% extends "booking/base.html" %}
+{% block content %}
+<div class="container mt-5">
+
+  <!-- Card Wrapper -->
+  <div class="card shadow-lg border-0 rounded-4">
+    <div class="card-header bg-dark text-white rounded-top-4">
+      <h4 class="mb-0">Book Your Journey</h4>
+    </div>
+    <div class="card-body">
+
+      <!-- Travel Info -->
+      <div class="mb-4">
+        <h5 class="fw-bold">{{ travel.type }}: {{ travel.source }} → {{ travel.destination }}</h5>
+        <p class="mb-1">📅 Date & Time: {{ travel.date_time }}</p>
+        <p class="mb-1">💺 Available Seats: {{ travel.available_seats }}</p>
+        <p class="mb-1">💰 Price per Seat: ₹{{ travel.price }}</p>
+      </div>
+
+      <!-- Booking Form -->
+      <form method="post" class="row g-3">
+        {% csrf_token %}
+
+        <div class="col-md-6">
+          <label class="form-label">Number of Seats</label>
+          {{ form.number_of_seats }}
+          {% if form.number_of_seats.errors %}
+            <div class="text-danger small">
+              {{ form.number_of_seats.errors }}
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="col-12">
+          <button type="submit" class="btn btn-info fw-bold px-4">
+            Confirm Booking
+          </button>
+          <a href="{% url 'travel_options' %}" class="btn btn-secondary px-4">Cancel</a>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+</div>
+{% endblock %}

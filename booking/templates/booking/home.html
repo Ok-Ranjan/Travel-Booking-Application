@@ -1,0 +1,72 @@
+{% extends 'booking/base.html' %}
+{% load static %}
+
+{% block title %}TripLoop - Travel Booking Application{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+  <!-- Hero section -->
+   <div class="text-center bg-dark text-white p-5 rounded-3">
+    <h1 class="fw-bold">Find Your Perfect Journey</h1>
+    <p class="lead">Book flights, trains, and buses with ease.</p>
+   </div>
+
+  <!-- Search card -->
+   <div class="card shadow-lg mt-4 p-4 bg-dark text-white border-0 rounded-4">
+    <h4 class="fw-bold mb-3">Quick Search</h4>
+    <form action="{% url 'travel_options' %}" method="get">
+      <div class="row g-3">
+
+        <!-- travel type -->
+         <div class="col-mid-3">
+          <label class="form-lebel">Travel Type</label>
+          <select name="type" class="form-select">
+            <option value="">All Types</option>
+            <option value="Flight">Flight</option>
+            <option value="Train">Train</option>
+            <option value="Bus">Bus</option>
+          </select>
+         </div>
+
+        <!-- Source -->
+         <div class="col-md-3">
+          <label class="form-label">From</label>
+          <select name="source" class="form-select">
+            <option value="">Select Source</option>
+            {% for travel in travels %}
+              <option value="{{ travel.source }}">{{ travel.source }}</option>
+            {% endfor %}
+          </select>
+         </div>
+
+        <!-- Destination -->
+         <div class="col-md-3">
+          <label class="form-label">To</label>
+          <select name="destination" class="form-select">
+            <option value="">Select Destination</option>
+            {% for travel in travels %}
+              <option value="{{ travel.destination }}">{{ travel.destination }}</option>
+            {% endfor %}
+          </select>
+         </div>
+
+        <!-- date -->
+         <div class="col-mid-3">
+          <label class="form-label">Date</label>
+          <input type="date" class="form-control" name="date">
+         </div>
+        
+        <!-- submit button -->
+        <div class="d-gride mt-4">
+          <button type="submit" class="btn btn-info btn-lg fw-bold">
+            Search travel Options
+          </button>
+        </div>
+      </div>
+    </form>
+   </div>
+</div>
+
+{% endblock %}

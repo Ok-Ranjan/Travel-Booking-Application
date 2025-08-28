@@ -1,0 +1,32 @@
+{% extends 'booking/base.html' %}
+{% load static %}
+
+{% block title %}TripLoop - Travel Booking Application{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2 class="mb-3">Available Travel Options</h2>
+
+  {% if travels %}
+    <div class="row">
+      {% for travel in travels %}
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-sm border-0 h-100">
+            <div class="card-body">
+              <h5 class="card-title">{{ travel.type }}: {{ travel.source }} → {{ travel.destination }}</h5>
+              <p class="card-text">
+                Date & Time: {{ travel.date_time }} <br>
+                Price: ₹{{ travel.price }} <br>
+                Available Seats: {{ travel.available_seats }}
+              </p>
+              <a href="{% url 'book_ticket' travel.travel_id %}" class="btn btn-primary">Book Now</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No travel options found for your search.</p>
+  {% endif %}
+</div>
+{% endblock %}
